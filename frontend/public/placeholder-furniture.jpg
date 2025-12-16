@@ -1,0 +1,16 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#f9fafb"/>
+  <!-- Sofá simple -->
+  <rect x="50" y="150" width="200" height="80" fill="#8b5cf6" rx="10"/>
+  <rect x="40" y="140" width="220" height="20" fill="#7c3aed" rx="10"/>
+  <!-- Patas -->
+  <rect x="70" y="230" width="15" height="30" fill="#374151"/>
+  <rect x="115" y="230" width="15" height="30" fill="#374151"/>
+  <rect x="170" y="230" width="15" height="30" fill="#374151"/>
+  <rect x="215" y="230" width="15" height="30" fill="#374151"/>
+  <!-- Cojines -->
+  <circle cx="100" cy="170" r="15" fill="#a855f7"/>
+  <circle cx="150" cy="170" r="15" fill="#a855f7"/>
+  <circle cx="200" cy="170" r="15" fill="#a855f7"/>
+  <text x="150" y="280" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Mueble</text>
+</svg>

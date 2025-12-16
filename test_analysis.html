@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Análisis de Espacio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Análisis de Espacio</h1>
+    
+    <div class="test-section">
+        <h2>1. Crear archivos de prueba</h2>
+        <button onclick="createTestFiles()">Crear archivos de prueba</button>
+        <div id="files-log" class="log"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Crear máscara de prueba</h2>
+        <canvas id="maskCanvas" width="512" height="512"></canvas>
+        <br>
+        <button onclick="createTestMask()">Crear máscara de prueba</button>
+        <button onclick="clearMask()">Limpiar máscara</button>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Probar envío al backend</h2>
+        <button onclick="testBackendCall()">Probar llamada al backend</button>
+        <div id="backend-log" class="log"></div>
+    </div>
+
+    <script>
+        let testFiles = {};
+        
+        function log(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent += new Date().toLocaleTimeString() + ': ' + message + '\n';
+            element.scrollTop = element.scrollHeight;
+        }
+
+        function createTestImage(width = 512, height = 512, color = '#ffffff') {
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            
+            // Fondo
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Agregar algo de contenido para que no sea completamente vacío
+            ctx.fillStyle = '#000000';
+            ctx.font = '20px Arial';
+            ctx.fillText('Test Image', 10, 30);
+            
+            return canvas.toDataURL('image/png');
+        }
+
+        function base64ToFile(base64, filename) {
+            const arr = base64.split(',');
+            const mime = arr[0].match(/:(.*?);/)[1];
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, { type: mime });
+        }
+
+        function createTestFiles() {
+            log('files-log', 'Creando archivos de prueba...');
+            
+            try {
+                // Crear imagen de habitación (azul claro)
+                const roomImage = createTestImage(512, 512, '#e3f2fd');
+                testFiles.room = base64ToFile(roomImage, 'test_room.png');
+                log('files-log', `✅ Archivo de habitación creado: ${testFiles.room.size} bytes`);
+                
+                // Crear imagen de mueble (verde claro)
+                const furnitureImage = createTestImage(256, 256, '#e8f5e8');
+                testFiles.furniture = base64ToFile(furnitureImage, 'test_furniture.png');
+                log('files-log', `✅ Archivo de mueble creado: ${testFiles.furniture.size} bytes`);
+                
+                log('files-log', '✅ Todos los archivos de prueba creados exitosamente');
+            } catch (error) {
+                log('files-log', `❌ Error creando archivos: ${error.message}`);
+            }
+        }
+
+        function createTestMask() {
+            const canvas = document.getElementById('maskCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Limpiar canvas
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Crear una máscara simple (círculo blanco)
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(256, 256, 100, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            log('backend-log', '✅ Máscara de prueba creada');
+        }
+
+        function clearMask() {
+            const canvas = document.getElementById('maskCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            log('backend-log', '🧹 Máscara limpiada');
+        }
+
+        async function testBackendCall() {
+            if (!testFiles.room || !testFiles.furniture) {
+                log('backend-log', '❌ Primero crea los archivos de prueba');
+                return;
+            }
+
+            try {
+                log('backend-log', '🚀 Iniciando prueba de backend...');
+                
+                // Obtener máscara del canvas
+                const canvas = document.getElementById('maskCanvas');
+                const maskImage = canvas.toDataURL('image/png');
+                const maskFile = base64ToFile(maskImage, 'test_mask.png');
+                
+                log('backend-log', `📁 Archivos preparados:
+- Room: ${testFiles.room.size} bytes
+- Furniture: ${testFiles.furniture.size} bytes  
+- Mask: ${maskFile.size} bytes`);
+
+                // Crear FormData
+                const formData = new FormData();
+                formData.append('room', testFiles.room);
+                formData.append('furniture', testFiles.furniture);
+                formData.append('mask', maskFile);
+                formData.append('prompt', '');
+                formData.append('seed', '0');
+                formData.append('num_inference_steps', '20');
+                formData.append('max_dimension', '512');
+                formData.append('margin', '64');
+                formData.append('crop', 'true');
+                formData.append('num_images_per_prompt', '1');
+                formData.append('model_type', 'dev');
+
+                log('backend-log', '📤 Enviando solicitud al backend...');
+
+                // Enviar al backend
+                const response = await fetch('http://localhost:3001/api/analisis-espacio/generate', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                log('backend-log', `📥 Respuesta recibida: ${response.status} ${response.statusText}`);
+
+                if (response.ok) {
+                    const result = await response.json();
+                    log('backend-log', `✅ Éxito: ${JSON.stringify(result, null, 2)}`);
+                } else {
+                    const error = await response.text();
+                    log('backend-log', `❌ Error: ${error}`);
+                }
+
+            } catch (error) {
+                log('backend-log', `❌ Error en la prueba: ${error.message}`);
+                console.error('Error completo:', error);
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            log('files-log', 'Test de análisis de espacio iniciado');
+            log('backend-log', 'Listo para probar el backend');
+            
+            // Crear máscara inicial
+            clearMask();
+        });
+    </script>
+</body>
+</html>

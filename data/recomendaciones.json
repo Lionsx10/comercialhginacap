@@ -1,0 +1,2457 @@
+[
+  {
+    "id": 1,
+    "usuario_id": 1,
+    "test_data": "updated",
+    "created_at": "2025-12-09T20:35:34.591Z",
+    "updated_at": "2025-12-09T20:35:34.600Z"
+  },
+  {
+    "id": 2,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": "Madera",
+      "color": "azul",
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T20:54:01.538Z",
+    "updated_at": "2025-12-09T20:54:01.544Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera con acabado en azul\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/0000FF/FFFFFF?text=Closet+minimalista",
+    "fecha_completada": "2025-12-09T20:54:01.544Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": "Madera",
+      "color_hex": "#0000FF",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 3,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 35,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 60,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 85,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 38,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 36,
+        "nombre": "minimalista en Madera",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 3,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": "Madera",
+      "color": "azul",
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T20:54:39.583Z",
+    "updated_at": "2025-12-09T20:54:39.585Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera con acabado en azul\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/0000FF/FFFFFF?text=Closet+minimalista",
+    "fecha_completada": "2025-12-09T20:54:39.584Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": "Madera",
+      "color_hex": "#0000FF",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 3,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 35,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 60,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 85,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 95,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 22,
+        "nombre": "minimalista en Madera",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 4,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": "Madera",
+      "color": "azul",
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T21:07:34.368Z",
+    "updated_at": "2025-12-09T21:07:34.371Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera con acabado en azul\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/0000FF/FFFFFF?text=Closet+minimalista",
+    "fecha_completada": "2025-12-09T21:07:34.370Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": "Madera",
+      "color_hex": "#0000FF",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 3,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 35,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 60,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 85,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#0000FF"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 15,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 86,
+        "nombre": "minimalista en Madera",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 5,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": "Metal",
+      "color": "azul",
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T21:22:09.272Z",
+    "updated_at": "2025-12-09T21:22:09.275Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Metal con acabado en azul\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar Acero como material complementario\n• Incorporar elementos de Aluminio para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/0000FF/FFFFFF?text=Closet+minimalista",
+    "fecha_completada": "2025-12-09T21:22:09.274Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": "Metal",
+      "color_hex": "#0000FF",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 3,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 35,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 60,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 85,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 74,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 37,
+        "nombre": "minimalista en Metal",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 6,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": "Metal",
+      "color": "azul",
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T21:29:22.526Z",
+    "updated_at": "2025-12-09T21:29:22.528Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Metal con acabado en azul\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar Acero como material complementario\n• Incorporar elementos de Aluminio para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/0000FF/FFFFFF?text=Closet+minimalista",
+    "fecha_completada": "2025-12-09T21:29:22.528Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": "Metal",
+      "color_hex": "#0000FF",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 3,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 35,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 60,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 85,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#0000FF"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 53,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 89,
+        "nombre": "minimalista en Metal",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 7,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": "Metal",
+      "color": "negro",
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T21:31:09.752Z",
+    "updated_at": "2025-12-09T21:31:09.754Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Metal con acabado en negro\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar Acero como material complementario\n• Incorporar elementos de Aluminio para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/000000/FFFFFF?text=Closet+minimalista",
+    "fecha_completada": "2025-12-09T21:31:09.754Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": "Metal",
+      "color_hex": "#000000",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 3,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 35,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 60,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 85,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#000000"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 91,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 61,
+        "nombre": "minimalista en Metal",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 8,
+    "usuario_id": 999,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 300,
+        "ancho": 60,
+        "alto": 240,
+        "unidad": "cm"
+      },
+      "material": "Madera",
+      "color": "Blanco",
+      "estilo": "Moderno",
+      "tipo_mueble": "Cocina",
+      "presupuesto_estimado": 100000,
+      "descripcion_adicional": "Una cocina moderna con isla"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T21:37:29.910Z",
+    "updated_at": "2025-12-09T21:37:30.998Z",
+    "texto_recomendacion": "Recomendación para Mueble de cocina personalizado:\n\nBasándome en las especificaciones proporcionadas (300x60x240 cm), recomiendo un diseño moderno que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera con acabado en blanco\n• Estilo: Moderno con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo Moderno con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/FFFFFF/FFFFFF?text=Mueble%20de%20cocina+Moderno",
+    "horde_request_id": "0915d274-651e-42aa-80b9-d903c6b43efb",
+    "prompt_used": "Furniture design, Mueble de cocina, style Moderno, made of Madera, color Blanco, Una cocina moderna con isla, photorealistic, 8k, highly detailed, professional photography, interior design, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T21:37:30.998Z",
+    "modelo_3d": {
+      "tipo": "kitchen_set",
+      "dimensiones_cm": {
+        "largo_cm": 300,
+        "ancho_cm": 60,
+        "alto_cm": 240
+      },
+      "material": "Madera",
+      "color_hex": "#FFFFFF",
+      "modules": [
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 30,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 30,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 90,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 90,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 150,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 150,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 210,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 210,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 270,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 270,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        }
+      ],
+      "components": []
+    },
+    "productos_sugeridos": [
+      {
+        "id": 70,
+        "nombre": "Mueble de cocina Moderno",
+        "precio_base": 3456,
+        "similitud": 85
+      },
+      {
+        "id": 98,
+        "nombre": "Moderno en Madera",
+        "precio_base": 2765,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 2765,
+      "maximo": 4147,
+      "promedio": 3456
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 39,
+      "dias_maximo": 64,
+      "dias_promedio": 49
+    }
+  },
+  {
+    "id": 9,
+    "usuario_id": 999,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 300,
+        "ancho": 60,
+        "alto": 240,
+        "unidad": "cm"
+      },
+      "material": "Madera",
+      "color": "Blanco",
+      "estilo": "Moderno",
+      "tipo_mueble": "Cocina",
+      "presupuesto_estimado": 100000,
+      "descripcion_adicional": "Una cocina moderna con isla"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T21:41:07.296Z",
+    "updated_at": "2025-12-09T21:41:10.533Z",
+    "texto_recomendacion": "Recomendación para Mueble de cocina personalizado:\n\nBasándome en las especificaciones proporcionadas (300x60x240 cm), recomiendo un diseño moderno que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera con acabado en blanco\n• Estilo: Moderno con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo Moderno con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/FFFFFF/FFFFFF?text=Mueble%20de%20cocina+Moderno",
+    "horde_request_id": "a44d28f7-0e93-480d-ae27-a37f2f5eea67",
+    "prompt_used": "Furniture design, Mueble de cocina, style Moderno, made of Madera, color Blanco, Una cocina moderna con isla, photorealistic, 8k, highly detailed, professional photography, interior design, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T21:41:10.532Z",
+    "modelo_3d": {
+      "tipo": "kitchen_set",
+      "dimensiones_cm": {
+        "largo_cm": 300,
+        "ancho_cm": 60,
+        "alto_cm": 240
+      },
+      "material": "Madera",
+      "color_hex": "#FFFFFF",
+      "modules": [
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 30,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 30,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 90,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 90,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 150,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 150,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 210,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 210,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 270,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 270,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        }
+      ],
+      "components": []
+    },
+    "productos_sugeridos": [
+      {
+        "id": 18,
+        "nombre": "Mueble de cocina Moderno",
+        "precio_base": 3456,
+        "similitud": 85
+      },
+      {
+        "id": 100,
+        "nombre": "Moderno en Madera",
+        "precio_base": 2765,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 2765,
+      "maximo": 4147,
+      "promedio": 3456
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 39,
+      "dias_maximo": 64,
+      "dias_promedio": 49
+    }
+  },
+  {
+    "id": 10,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": "Madera",
+      "color": "negro",
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T21:46:13.911Z",
+    "updated_at": "2025-12-09T21:46:17.545Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera con acabado en negro\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/000000/FFFFFF?text=Closet+minimalista",
+    "horde_request_id": "7283751d-6dbf-4e3d-80f7-a053dc0e9594",
+    "prompt_used": "Furniture design, closet, style minimalist, made of wood, color black, closet, photorealistic, 8k, highly detailed, professional photography, interior design, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T21:46:17.545Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": "Madera",
+      "color_hex": "#000000",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 3,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 35,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 60,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 85,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#000000"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 58,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 21,
+        "nombre": "minimalista en Madera",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 11,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": [
+        "Madera",
+        "Metal"
+      ],
+      "color": [
+        "negro",
+        "azul"
+      ],
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "procesando",
+    "created_at": "2025-12-09T21:55:58.492Z",
+    "updated_at": "2025-12-09T21:55:58.492Z"
+  },
+  {
+    "id": 12,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": [
+        "Madera",
+        "Metal"
+      ],
+      "color": [
+        "negro",
+        "azul"
+      ],
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "procesando",
+    "created_at": "2025-12-09T21:56:06.239Z",
+    "updated_at": "2025-12-09T21:56:06.239Z"
+  },
+  {
+    "id": 13,
+    "usuario_id": 999,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 300,
+        "ancho": 60,
+        "alto": 240,
+        "unidad": "cm"
+      },
+      "material": [
+        "Madera",
+        "Vidrio"
+      ],
+      "color": [
+        "Blanco",
+        "Azul"
+      ],
+      "estilo": "Moderno",
+      "tipo_mueble": "Cocina",
+      "presupuesto_estimado": 100000,
+      "descripcion_adicional": "Una cocina moderna con isla"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T22:05:00.078Z",
+    "updated_at": "2025-12-09T22:05:01.093Z",
+    "texto_recomendacion": "Recomendación para Mueble de cocina personalizado:\n\nBasándome en las especificaciones proporcionadas (300x60x240 cm), recomiendo un diseño moderno que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera, Vidrio con acabado en blanco, azul\n• Estilo: Moderno con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo Moderno con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/FFFFFF/FFFFFF?text=Mueble%20de%20cocina+Moderno",
+    "horde_request_id": "7f1ef6c4-da52-4530-b2c5-ab0044fa742b",
+    "prompt_used": "Furniture design, kitchen cabinet, style modern, made of wood and glass, color white and blue, 4 doors, 2 drawers, Una cocina moderna con isla, photorealistic, 8k, highly detailed, professional photography, interior design, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T22:05:01.092Z",
+    "modelo_3d": {
+      "tipo": "kitchen_set",
+      "dimensiones_cm": {
+        "largo_cm": 300,
+        "ancho_cm": 60,
+        "alto_cm": 240
+      },
+      "material": [
+        "Madera",
+        "Vidrio"
+      ],
+      "color_hex": "#FFFFFF",
+      "modules": [
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 30,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 30,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 90,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 90,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 150,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 150,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 210,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 210,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 270,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 270,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        }
+      ],
+      "components": []
+    },
+    "productos_sugeridos": [
+      {
+        "id": 30,
+        "nombre": "Mueble de cocina Moderno",
+        "precio_base": 3456,
+        "similitud": 85
+      },
+      {
+        "id": 68,
+        "nombre": "Moderno en Madera,Vidrio",
+        "precio_base": 2765,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 2765,
+      "maximo": 4147,
+      "promedio": 3456
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 39,
+      "dias_maximo": 64,
+      "dias_promedio": 49
+    }
+  },
+  {
+    "id": 14,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": [
+        "Metal",
+        "Madera"
+      ],
+      "color": [
+        "negro",
+        "azul"
+      ],
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "Closet"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T22:09:59.928Z",
+    "updated_at": "2025-12-09T22:10:00.931Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Metal, Madera con acabado en negro, azul\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar Acero como material complementario\n• Incorporar elementos de Aluminio para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/000000/FFFFFF?text=Closet+minimalista",
+    "horde_request_id": "c35aab4e-d0b2-4034-a435-a1abcf6841ce",
+    "prompt_used": "Furniture design, closet, style minimalist, made of metal and wood, color black and blue, 2 doors, 2 drawers, closet, photorealistic, 8k, highly detailed, professional photography, interior design, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T22:10:00.930Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": [
+        "Metal",
+        "Madera"
+      ],
+      "color_hex": "#000000",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": [
+            "Metal",
+            "Madera"
+          ],
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 3,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 3,
+            "y": 1.5,
+            "z": 0
+          },
+          "material": [
+            "Metal",
+            "Madera"
+          ],
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 35,
+            "z": 0
+          },
+          "material": [
+            "Metal",
+            "Madera"
+          ],
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 60,
+            "z": 0
+          },
+          "material": [
+            "Metal",
+            "Madera"
+          ],
+          "color_hex": "#000000"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": 0,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 85,
+            "z": 0
+          },
+          "material": [
+            "Metal",
+            "Madera"
+          ],
+          "color_hex": "#000000"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 12,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 89,
+        "nombre": "minimalista en Metal,Madera",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 15,
+    "usuario_id": 999,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 300,
+        "ancho": 60,
+        "alto": 240,
+        "unidad": "cm"
+      },
+      "material": [
+        "Madera",
+        "Vidrio"
+      ],
+      "color": [
+        "Blanco",
+        "Azul"
+      ],
+      "estilo": "Moderno",
+      "tipo_mueble": "Cocina",
+      "presupuesto_estimado": 100000,
+      "descripcion_adicional": "Una cocina moderna con isla"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T22:18:44.093Z",
+    "updated_at": "2025-12-09T22:18:47.273Z",
+    "texto_recomendacion": "Recomendación para Mueble de cocina personalizado:\n\nBasándome en las especificaciones proporcionadas (300x60x240 cm), recomiendo un diseño moderno que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera, Vidrio con acabado en blanco, azul\n• Estilo: Moderno con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo Moderno con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/FFFFFF/FFFFFF?text=Mueble%20de%20cocina+Moderno",
+    "horde_request_id": "9ec683bd-7bd1-4d56-a1e0-25c066941f02",
+    "prompt_used": "Furniture design, kitchen cabinet, style modern, made of wood and glass, color white and blue, 4 doors, 2 drawers, Una cocina moderna con isla, photorealistic, 8k, highly detailed, professional photography, interior design, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T22:18:47.273Z",
+    "modelo_3d": {
+      "tipo": "kitchen_set",
+      "dimensiones_cm": {
+        "largo_cm": 300,
+        "ancho_cm": 60,
+        "alto_cm": 240
+      },
+      "material": [
+        "Madera",
+        "Vidrio"
+      ],
+      "color_hex": "#FFFFFF",
+      "modules": [
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 30,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 30,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 90,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 90,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 150,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 150,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 210,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 210,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 270,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 270,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        }
+      ],
+      "components": []
+    },
+    "productos_sugeridos": [
+      {
+        "id": 72,
+        "nombre": "Mueble de cocina Moderno",
+        "precio_base": 3456,
+        "similitud": 85
+      },
+      {
+        "id": 78,
+        "nombre": "Moderno en Madera,Vidrio",
+        "precio_base": 2765,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 2765,
+      "maximo": 4147,
+      "promedio": 3456
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 39,
+      "dias_maximo": 64,
+      "dias_promedio": 49
+    }
+  },
+  {
+    "id": 16,
+    "usuario_id": 999,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 300,
+        "ancho": 60,
+        "alto": 240,
+        "unidad": "cm"
+      },
+      "material": [
+        "Madera",
+        "Vidrio"
+      ],
+      "color": [
+        "Blanco",
+        "Azul"
+      ],
+      "estilo": "Moderno",
+      "tipo_mueble": "Cocina",
+      "presupuesto_estimado": 100000,
+      "descripcion_adicional": "Una cocina moderna con isla"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T22:19:36.326Z",
+    "updated_at": "2025-12-09T22:19:37.381Z",
+    "texto_recomendacion": "Recomendación para Mueble de cocina personalizado:\n\nBasándome en las especificaciones proporcionadas (300x60x240 cm), recomiendo un diseño moderno que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera, Vidrio con acabado en blanco, azul\n• Estilo: Moderno con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo Moderno con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/FFFFFF/FFFFFF?text=Mueble%20de%20cocina+Moderno",
+    "horde_request_id": "729d1cd6-41c1-4a19-935b-2fbbcc878585",
+    "prompt_used": "Furniture design, kitchen cabinet, style modern, made of wood and glass, color white and blue, 4 doors, 2 drawers, Una cocina moderna con isla, photorealistic, 8k, highly detailed, professional photography, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T22:19:37.380Z",
+    "modelo_3d": {
+      "tipo": "kitchen_set",
+      "dimensiones_cm": {
+        "largo_cm": 300,
+        "ancho_cm": 60,
+        "alto_cm": 240
+      },
+      "material": [
+        "Madera",
+        "Vidrio"
+      ],
+      "color_hex": "#FFFFFF",
+      "modules": [
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 30,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 30,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 90,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 90,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 150,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 150,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 210,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 210,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 270,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "superior",
+          "ancho_cm": 60,
+          "alto_cm": 72,
+          "fondo_cm": 35,
+          "posicion_cm": {
+            "x": 270,
+            "y": 171,
+            "z": 0
+          },
+          "material": "Madera",
+          "color_hex": "#FFFFFF"
+        }
+      ],
+      "components": []
+    },
+    "productos_sugeridos": [
+      {
+        "id": 74,
+        "nombre": "Mueble de cocina Moderno",
+        "precio_base": 3456,
+        "similitud": 85
+      },
+      {
+        "id": 99,
+        "nombre": "Moderno en Madera,Vidrio",
+        "precio_base": 2765,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 2765,
+      "maximo": 4147,
+      "promedio": 3456
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 39,
+      "dias_maximo": 64,
+      "dias_promedio": 49
+    }
+  },
+  {
+    "id": 17,
+    "usuario_id": 17,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3.5,
+        "ancho": 2.8,
+        "alto": 2.5,
+        "unidad": "cm"
+      },
+      "material": [
+        "Metal",
+        "Madera"
+      ],
+      "color": [
+        "gris",
+        "rojo"
+      ],
+      "estilo": "minimalista",
+      "tipo_mueble": "cocina",
+      "presupuesto_estimado": 200000,
+      "descripcion_adicional": "mueble"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T22:22:47.513Z",
+    "updated_at": "2025-12-09T22:22:50.523Z",
+    "texto_recomendacion": "Recomendación para Mueble de cocina personalizado:\n\nBasándome en las especificaciones proporcionadas (3.5x2.8x2.5 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Metal, Madera con acabado en gris, rojo\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar Acero como material complementario\n• Incorporar elementos de Aluminio para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/808080/FFFFFF?text=Mueble%20de%20cocina+minimalista",
+    "horde_request_id": "8f98be0a-0839-4f5b-84f5-9dac53abbc69",
+    "prompt_used": "Furniture design, kitchen cabinet, style minimalist, made of metal and wood, color grey and red, 2 doors, 4 drawers, furniture, photorealistic, 8k, highly detailed, professional photography, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T22:22:50.522Z",
+    "modelo_3d": {
+      "tipo": "kitchen_set",
+      "dimensiones_cm": {
+        "largo_cm": 4,
+        "ancho_cm": 3,
+        "alto_cm": 3
+      },
+      "material": [
+        "Metal",
+        "Madera"
+      ],
+      "color_hex": "#808080",
+      "modules": [
+        {
+          "tipo": "base",
+          "ancho_cm": 60,
+          "alto_cm": 90,
+          "fondo_cm": 60,
+          "posicion_cm": {
+            "x": 30,
+            "y": 45,
+            "z": 0
+          },
+          "material": "Metal",
+          "color_hex": "#808080"
+        }
+      ],
+      "components": []
+    },
+    "productos_sugeridos": [
+      {
+        "id": 16,
+        "nombre": "Mueble de cocina minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 10,
+        "nombre": "minimalista en Metal,Madera",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 18,
+    "usuario_id": 16,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3,
+        "ancho": 2,
+        "alto": 2,
+        "unidad": "cm"
+      },
+      "material": [
+        "Madera"
+      ],
+      "color": [
+        "blanco",
+        "negro"
+      ],
+      "estilo": "minimalista",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 2000000,
+      "descripcion_adicional": "Necesito un closet para mi habitación que sea espacioso"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T22:58:19.178Z",
+    "updated_at": "2025-12-09T22:58:22.609Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3x2x2 cm), recomiendo un diseño minimalista que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera con acabado en blanco, negro\n• Estilo: minimalista con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo minimalista con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/FFFFFF/FFFFFF?text=Closet+minimalista",
+    "horde_request_id": "eb9a53a0-d3c9-4d8c-8afe-7d9d71fbc794",
+    "prompt_used": "Furniture design, closet, style minimalist, made of wood, color white and black, 3 doors, 3 drawers, Necesito un closet para mi habitación que sea espacioso, photorealistic, 8k, highly detailed, professional photography, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T22:58:22.609Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 3,
+        "ancho_cm": 2,
+        "alto_cm": 2
+      },
+      "material": [
+        "Madera"
+      ],
+      "color_hex": "#FFFFFF",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 1,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": -1,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1.5,
+            "y": 35,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": -1,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1.5,
+            "y": 60,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": -1,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1.5,
+            "y": 85,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 65,
+        "nombre": "Closet minimalista",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 15,
+        "nombre": "minimalista en Madera",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    }
+  },
+  {
+    "id": 19,
+    "usuario_id": 16,
+    "datos_entrada": {
+      "medidas": {
+        "largo": 3,
+        "ancho": 2,
+        "alto": 2,
+        "unidad": "cm"
+      },
+      "material": [
+        "Madera"
+      ],
+      "color": [
+        "blanco",
+        "negro"
+      ],
+      "estilo": "moderno",
+      "tipo_mueble": "closet",
+      "presupuesto_estimado": 2000000,
+      "descripcion_adicional": "Necesito un closet para mi habitación que sea espacioso"
+    },
+    "estado": "completada",
+    "created_at": "2025-12-09T22:59:07.885Z",
+    "updated_at": "2025-12-09T23:01:44.823Z",
+    "texto_recomendacion": "Recomendación para Closet personalizado:\n\nBasándome en las especificaciones proporcionadas (3x2x2 cm), recomiendo un diseño moderno que combine funcionalidad y estética.\n\nCARACTERÍSTICAS PRINCIPALES:\n• Material principal: Madera con acabado en blanco, negro\n• Estilo: moderno con líneas limpias y proporciones equilibradas\n• Dimensiones optimizadas para el espacio disponible\n\nRECOMENDACIONES DE DISEÑO:\n• Utilizar MDF como material complementario\n• Incorporar elementos de Contrachapado para mayor durabilidad\n• Acabado mate/satinado para resaltar la textura natural\n\nCONSIDERACIONES TÉCNICAS:\n• Estructura reforzada en puntos de mayor estrés\n• Tratamiento anti-humedad y protección UV\n• Herrajes de alta calidad para mayor durabilidad\n\nEste diseño combina la elegancia del estilo moderno con la practicidad moderna, resultando en una pieza única que se adaptará perfectamente a sus necesidades.",
+    "imagen_generada_url": "https://via.placeholder.com/400x300/FFFFFF/FFFFFF?text=Closet+moderno",
+    "horde_request_id": "abb78258-fe6d-4c22-a134-6b43118e627e",
+    "prompt_used": "Furniture design, closet, style modern, made of wood, color white and black, 2 doors, 2 drawers, Necesito un closet para mi habitación que sea espacioso, photorealistic, 8k, highly detailed, professional photography, cinematic lighting, 3d render, unreal engine 5",
+    "fecha_completada": "2025-12-09T22:59:11.381Z",
+    "modelo_3d": {
+      "tipo": "component_set",
+      "dimensiones_cm": {
+        "largo_cm": 3,
+        "ancho_cm": 2,
+        "alto_cm": 2
+      },
+      "material": [
+        "Madera"
+      ],
+      "color_hex": "#FFFFFF",
+      "components": [
+        {
+          "tipo": "panel_lateral_izquierdo",
+          "ancho_cm": 2,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1,
+            "y": 1,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "panel_lateral_derecho",
+          "ancho_cm": 2,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 2,
+            "y": 1,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": -1,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1.5,
+            "y": 35,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": -1,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1.5,
+            "y": 60,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        },
+        {
+          "tipo": "repisa",
+          "ancho_cm": -1,
+          "alto_cm": 2,
+          "fondo_cm": 40,
+          "posicion_cm": {
+            "x": 1.5,
+            "y": 85,
+            "z": 0
+          },
+          "material": [
+            "Madera"
+          ],
+          "color_hex": "#FFFFFF"
+        }
+      ]
+    },
+    "productos_sugeridos": [
+      {
+        "id": 13,
+        "nombre": "Closet moderno",
+        "precio_base": 0,
+        "similitud": 85
+      },
+      {
+        "id": 52,
+        "nombre": "moderno en Madera",
+        "precio_base": 0,
+        "similitud": 72
+      }
+    ],
+    "estimacion_precio": {
+      "minimo": 0,
+      "maximo": 0,
+      "promedio": 0
+    },
+    "tiempo_estimado": {
+      "dias_minimo": 5,
+      "dias_maximo": 8,
+      "dias_promedio": 6
+    },
+    "guardada": true
+  }
+]
