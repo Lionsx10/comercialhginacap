@@ -1,13 +1,14 @@
 <script setup>
 // ===== IMPORTACIONES =====
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import { useAuthStore } from '@/stores/auth'
 import api from '@/services/api'
 
 // ===== COMPOSABLES Y STORES =====
 const router = useRouter() // Para navegación programática
+const route = useRoute() // Para acceder a la ruta actual
 const toast = useToast() // Para mostrar notificaciones toast
 const authStore = useAuthStore() // Store de autenticación
 
@@ -434,18 +435,18 @@ class="flex items-center">
           </div>
 
           <!-- Botones de autenticación -->
-          <div v-else
-class="flex items-center space-x-3">
-            <RouterLink
-              to="/login"
-              class="text-gray-600 hover:text-primary-600 font-medium transition-colors"
-            >
-              Iniciar Sesión
-            </RouterLink>
-            <RouterLink to="/register"
-class="btn-primary">
-              Registrarse
-            </RouterLink>
+          <div v-else class="flex items-center space-x-3">
+            <template v-if="route.name !== 'admin-login'">
+              <RouterLink
+                to="/login"
+                class="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              >
+                Iniciar Sesión
+              </RouterLink>
+              <RouterLink to="/register" class="btn-primary">
+                Registrarse
+              </RouterLink>
+            </template>
           </div>
 
           <!-- Botón de menú móvil -->
@@ -555,7 +556,7 @@ class="md:hidden border-t border-gray-200">
             </RouterLink>
 
             <div
-              v-if="!authStore.isAuthenticated && !authStore.isAdmin"
+              v-if="!authStore.isAuthenticated && !authStore.isAdmin && route.name !== 'admin-login'"
               class="pt-4 border-t border-gray-200"
             >
               <RouterLink

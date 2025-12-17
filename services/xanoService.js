@@ -1,4 +1,8 @@
-const { get, post, put, del, patch, getPaginated, authGet, authPost } = require('../config/database');
+const { 
+  get, post, put, del, patch, getPaginated, 
+  authGet, authPost, authPut, authDel, authPatch,
+  membersGet, membersPost, membersPut, membersDel 
+} = require('../config/database');
 const { createLogger } = require('../middleware/logger');
 
 const logger = createLogger('xanoService');
@@ -48,6 +52,7 @@ class XanoService {
         getById: id => `/catalogo/${id}`,
         update: id => `/catalogo/${id}`,
         delete: id => `/catalogo/${id}`,
+        filters: '/catalogo/filtros',
       },
       recomendacion_ia: {
         list: '/recomendacion_ia',
@@ -66,12 +71,25 @@ class XanoService {
         byUser: userId => `/notificacion`,
         preferences: '/notificacion/preferencias',
         send: '/notificacion/enviar',
+        markRead: '/notificacion/marcar_leida',
       },
       cotizacion: {
         list: '/cotizacion',
         create: '/cotizacion',
         getById: id => `/cotizacion/${id}`,
       },
+      estado_pedido: {
+        list: '/estado_pedido',
+        create: '/estado_pedido',
+        getById: id => `/estado_pedido/${id}`,
+      },
+      usuarios: {
+        updatePassword: '/usuarios/update_password',
+        deleteResetToken: '/usuarios/delete_reset_token',
+        getByEmail: '/usuarios/get_by_email',
+        saveResetToken: '/usuarios/save_reset_token',
+        verifyResetToken: '/usuarios/verify_reset_token',
+      }
     };
     this.adminToken = null;
   }
@@ -83,13 +101,20 @@ class XanoService {
       logger.info('Usuario autenticado exitosamente', { email: credentials.email });
 
       const token = loginResponse.authToken || loginResponse.token || loginResponse.access_token || loginResponse.key || null;
+      let userInfo = loginResponse.user || loginResponse.userData || null;
 
       if (token) {
-        const userInfo = await this.me(token);
-        return { authToken: token, user: userInfo };
+        if (!userInfo) {
+          try {
+            userInfo = await this.me(token);
+          } catch (meError) {
+            logger.warn('No se pudo obtener info de usuario (me) tras login, usando datos parciales si existen', { error: meError.message });
+          }
+        }
+        return { authToken: token, user: userInfo || {} };
       }
 
-      const userInfo = loginResponse.user || loginResponse;
+      userInfo = userInfo || loginResponse;
       return { authToken: null, user: userInfo };
     } catch (error) {
       logger.error('Error en login', { 
@@ -131,7 +156,7 @@ class XanoService {
       
       // Agregar teléfono si está presente
       if (userData.telefono) {
-        xanoData.telefono = String(userData.telefono).replace(/\s/g, '');
+        xanoData.n_telefono = String(userData.telefono).replace(/\s/g, '');
       }
       
       const signupResponse = await authPost(this.endpoints.auth.register, xanoData);
@@ -140,14 +165,14 @@ class XanoService {
       const userInfo = await this.me(signupResponse.authToken);
 
       // Intentar persistir el teléfono en la tabla user de Xano
-      if (xanoData.telefono) {
+      if (xanoData.n_telefono) {
         try {
-          await this.updateUser(userInfo.id, { telefono: xanoData.telefono }, signupResponse.authToken);
+          await this.updateUser(userInfo.id, { n_telefono: xanoData.n_telefono }, signupResponse.authToken);
         } catch (e) {
           logger.warn('No se pudo actualizar teléfono con token de usuario, intentando con admin', { userId: userInfo.id, message: e.message });
           try {
             const adminToken = await this.ensureAdminToken();
-            await this.updateUser(userInfo.id, { telefono: xanoData.telefono }, adminToken);
+            await this.updateUser(userInfo.id, { n_telefono: xanoData.n_telefono }, adminToken);
           } catch (e2) {
             logger.error('Fallo al actualizar teléfono del usuario en Xano (admin fallback)', { userId: userInfo.id, message: e2.message });
           }
@@ -161,7 +186,7 @@ class XanoService {
           id: userInfo.id,
           nombre: userInfo.name,
           email: userInfo.email,
-          telefono: (xanoData.telefono || userInfo.telefono || null),
+          telefono: (xanoData.n_telefono || userInfo.n_telefono || userInfo.telefono || null),
           rol: 'cliente',
           fecha_registro: new Date(userInfo.created_at).toISOString()
         }
@@ -235,52 +260,88 @@ class XanoService {
   // Métodos de usuarios
   async getUsers(params = {}, token) {
     try {
-      const response = await getPaginated(this.endpoints.usuario.list, params.page || 1, params.limit || 10, params, token);
-      return response;
-    } catch (error) {
+      const queryParams = { 
+        page: params.page || 1, 
+        per_page: params.limit || 10,
+        ...params 
+      };
+      
+      // Intentar primero con Auth API (según instrucción del usuario)
+      let response;
       try {
-        const responseAlt = await getPaginated('/usuarios', params.page || 1, params.limit || 10, params, token);
-        return responseAlt;
-      } catch (err) {
-        logger.error('Error al obtener usuarios', { error: err.message });
-        throw err;
+        response = await authGet(this.endpoints.usuario.list, queryParams, token);
+      } catch (e) {
+        // Fallback a Members API
+        response = await membersGet(this.endpoints.usuario.list, queryParams, token);
       }
+
+      const items = response.items || response.data || response || [];
+      return {
+        data: items,
+        pagination: {
+          page: response.page || params.page || 1,
+          per_page: response.per_page || params.limit || 10,
+          total: response.total || (Array.isArray(items) ? items.length : 0),
+          pages: response.pages || 1
+        }
+      };
+    } catch (error) {
+      logger.error('Error al obtener usuarios', { error: error.message });
+      throw error;
     }
   }
 
   async createUser(userData, token) {
     try {
-      const body = { name: userData.nombre || userData.name || 'Usuario', email: userData.email, telefono: userData.telefono || null };
-      let response = null;
+      const body = { 
+        name: userData.nombre || userData.name || 'Usuario', 
+        email: userData.email, 
+        telefono: userData.telefono || null 
+      };
+      
+      let response;
       try {
-        response = await post(this.endpoints.usuario.create, body, token);
+        response = await authPost(this.endpoints.usuario.create, body, token);
       } catch (_) {
-        response = await post(this.endpoints.user.create, body, token);
+        response = await membersPost(this.endpoints.usuario.create, body, token);
       }
+      
       logger.info('Usuario creado en Xano', { id: response.id, email: body.email });
       return response;
     } catch (error) {
-      try {
-        const body = { name: userData.nombre || userData.name || 'Usuario', email: userData.email, telefono: userData.telefono || null };
-        let responseAlt = null;
-        try {
-          responseAlt = await post('/usuarios', body, token);
-        } catch (_) {
-          responseAlt = await post('/user', body, token);
-        }
-        logger.info('Usuario creado en Xano (fallback)', { id: responseAlt.id, email: body.email });
-        return responseAlt;
-      } catch (err) {
-        logger.error('Error al crear usuario en Xano', { error: err.message });
-        throw err;
-      }
+      logger.error('Error al crear usuario en Xano', { error: error.message });
+      throw error;
     }
   }
 
   async getUserById(id, token) {
     try {
-      const response = await get(this.endpoints.usuario.getById(id), {}, token);
-      return response;
+      let response;
+      // Intentar primero con endpoint /usuario (custom)
+      try {
+        response = await authGet(this.endpoints.usuario.getById(id), {}, token);
+        return response;
+      } catch (_) {}
+      
+      // Intentar con members /usuario
+      try {
+        response = await membersGet(this.endpoints.usuario.getById(id), {}, token);
+        return response;
+      } catch (_) {}
+
+      // Intentar con endpoint /user (standard Xano auth)
+      try {
+        response = await authGet(this.endpoints.user.getById(id), {}, token);
+        return response;
+      } catch (_) {}
+
+      // Último intento: endpoint genérico /user/{id}
+      try {
+        response = await get(`/user/${id}`, {}, token);
+        return response;
+      } catch (_) {}
+
+      throw new Error('Usuario no encontrado en ninguna tabla (usuario/user)');
     } catch (error) {
       logger.error('Error al obtener usuario', { id, error: error.message });
       throw error;
@@ -289,14 +350,15 @@ class XanoService {
 
   async updateUser(id, userData, token) {
     try {
-      let response = null;
+      let response;
       try {
-        response = await put(this.endpoints.usuario.update(id), userData, token);
+        response = await authPut(this.endpoints.usuario.update(id), userData, token);
       } catch (_) {
         try {
-          response = await put(this.endpoints.user.update(id), userData, token);
+          response = await membersPut(this.endpoints.usuario.update(id), userData, token);
         } catch (e2) {
-          response = await put(`/user/${id}`, userData, token);
+          // Fallback a endpoints antiguos por si acaso
+          response = await authPut(`/user/${id}`, userData, token);
         }
       }
       logger.info('Usuario actualizado', { id, campos: Object.keys(userData) });
@@ -309,11 +371,32 @@ class XanoService {
 
   async changePassword(passwordData, token) {
     try {
-      const response = await post(this.endpoints.usuarios.changePassword, passwordData, token);
+      let response;
+      try {
+        // Corregido: usar updatePassword y authPost
+        response = await authPost(this.endpoints.usuarios.updatePassword, passwordData, token);
+      } catch (_) {
+        response = await membersPost(this.endpoints.usuarios.updatePassword, passwordData, token);
+      }
       logger.info('Contraseña cambiada exitosamente');
       return response;
     } catch (error) {
       logger.error('Error al cambiar contraseña', { error: error.message });
+      throw error;
+    }
+  }
+
+  async deleteResetToken(data, token) {
+    try {
+      let response;
+      try {
+        response = await authPost(this.endpoints.usuarios.deleteResetToken, data, token);
+      } catch (_) {
+        response = await membersPost(this.endpoints.usuarios.deleteResetToken, data, token);
+      }
+      return response;
+    } catch (error) {
+      logger.error('Error al eliminar token de reset', { error: error.message });
       throw error;
     }
   }
@@ -358,10 +441,25 @@ class XanoService {
   }
 
   async createOrderWithDetails(orderData, token) {
-    const payload = { estado: 'en_cotizacion' };
+    const payload = { estado: orderData.estado || 'en_cotizacion' };
     if (orderData.usuario_id != null) payload.usuario_id = orderData.usuario_id;
     if (orderData.user_id != null) payload.user_id = orderData.user_id;
+    if (orderData.estado_pedido != null) payload.estado_pedido = orderData.estado_pedido;
     const pedido = await this.createOrder(payload, token);
+
+    // Crear registro en la tabla estado_pedido si se proporciona
+    if (orderData.estado_pedido) {
+      try {
+        await this.createEstadoPedido({
+          estado_cotizacion: orderData.estado_pedido,
+          user_id: payload.user_id || payload.usuario_id,
+          pedido_id: pedido.id
+        }, token);
+      } catch (e) {
+        logger.warn('No se pudo crear registro en estado_pedido', { error: e.message });
+      }
+    }
+
     const detalles = Array.isArray(orderData.detalles) ? orderData.detalles : [];
     const creados = [];
     let totalEstimado = 0;
@@ -392,14 +490,35 @@ class XanoService {
     return { ...pedido, detalles: creados, total_estimado: totalEstimado };
   }
 
+  async createEstadoPedido(data, token) {
+    try {
+      // Intentar crear con el token proporcionado
+      return await post(this.endpoints.estado_pedido.create, data, token);
+    } catch (error) {
+      // Si falla, intentar con token de admin si no es el que se usó
+      if (token !== this.adminToken) {
+        try {
+          const adminToken = await this.ensureAdminToken();
+          return await post(this.endpoints.estado_pedido.create, data, adminToken);
+        } catch (e2) {
+          throw error;
+        }
+      }
+      throw error;
+    }
+  }
+
   async createCotizacion(data, token) {
     try {
       const body = {
         cubierta: data.cubierta,
         material_mueble: data.material_mueble,
         color: data.color || '',
+        color_cubierta: data.color_cubierta || '',
+        color_material: data.color_material || '',
         medidas: data.medidas || '',
         precio_unitario: data.precio_unitario ?? 0,
+        precio: data.precio_unitario ?? 0,
       };
       if (data.comuna !== undefined) {
         body.comuna = data.comuna || '';
@@ -409,6 +528,7 @@ class XanoService {
       }
       if (data.precio_traslado !== undefined) {
         body.precio_traslado = data.precio_traslado ?? 0;
+        body.precio_comuna = data.precio_traslado ?? 0;
       }
       if (data.total_con_traslado !== undefined) {
         body.total_con_traslado = data.total_con_traslado ?? body.precio_unitario;
@@ -758,7 +878,12 @@ class XanoService {
   // Métodos para recuperación de contraseña
   async getUserByEmail(email) {
     try {
-      const response = await post(this.endpoints.usuarios.getByEmail, { email });
+      let response;
+      try {
+        response = await authPost(this.endpoints.usuarios.getByEmail, { email });
+      } catch (_) {
+        response = await membersPost(this.endpoints.usuarios.getByEmail, { email });
+      }
       return response;
     } catch (error) {
       if (error.response?.status === 404) {
@@ -771,11 +896,17 @@ class XanoService {
 
   async savePasswordResetToken(userId, token, expiresAt) {
     try {
-      const response = await post(this.endpoints.usuarios.saveResetToken, {
+      const data = {
         user_id: userId,
         token,
         expires_at: expiresAt.toISOString()
-      });
+      };
+      let response;
+      try {
+        response = await authPost(this.endpoints.usuarios.saveResetToken, data);
+      } catch (_) {
+        response = await membersPost(this.endpoints.usuarios.saveResetToken, data);
+      }
       logger.info('Token de recuperación guardado', { userId });
       return response;
     } catch (error) {
@@ -786,7 +917,12 @@ class XanoService {
 
   async verifyPasswordResetToken(token) {
     try {
-      const response = await post(this.endpoints.usuarios.verifyResetToken, { token });
+      let response;
+      try {
+        response = await authPost(this.endpoints.usuarios.verifyResetToken, { token });
+      } catch (_) {
+        response = await membersPost(this.endpoints.usuarios.verifyResetToken, { token });
+      }
       return response;
     } catch (error) {
       if (error.response?.status === 404) {
@@ -797,12 +933,19 @@ class XanoService {
     }
   }
 
+  // Métodos para recuperación de contraseña (compatibilidad con routes/auth.js)
   async updatePassword(userId, newPassword) {
     try {
-      const response = await post(this.endpoints.usuarios.updatePassword, {
+      const data = {
         user_id: userId,
         password: newPassword
-      });
+      };
+      let response;
+      try {
+        response = await authPost(this.endpoints.usuarios.updatePassword, data);
+      } catch (_) {
+        response = await membersPost(this.endpoints.usuarios.updatePassword, data);
+      }
       logger.info('Contraseña actualizada exitosamente', { userId });
       return response;
     } catch (error) {
@@ -813,7 +956,12 @@ class XanoService {
 
   async deletePasswordResetToken(token) {
     try {
-      const response = await post(this.endpoints.usuarios.deleteResetToken, { token });
+      let response;
+      try {
+        response = await authPost(this.endpoints.usuarios.deleteResetToken, { token });
+      } catch (_) {
+        response = await membersPost(this.endpoints.usuarios.deleteResetToken, { token });
+      }
       logger.info('Token de recuperación eliminado');
       return response;
     } catch (error) {

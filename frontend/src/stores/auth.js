@@ -62,7 +62,10 @@ export const useAuthStore = defineStore('auth', () => {
 
       return { success: true, user: usuario }
     } catch (error) {
-      const message = error.response?.data?.mensaje || 'Error al iniciar sesión'
+      const message =
+        error.response?.data?.mensaje ||
+        error.response?.data?.message ||
+        'Error al iniciar sesión'
       toast.error(message)
       return { success: false, error: message }
     } finally {

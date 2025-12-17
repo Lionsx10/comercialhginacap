@@ -170,7 +170,7 @@ router.post('/xano', verificarToken, asyncHandler(async (req, res) => {
     // Preferir crear el pedido con el token del usuario; Xano asigna usuario automáticamente
     if (userToken) {
       try {
-        const response = await xanoService.createOrderWithDetails({ ...payload, estado: 'en_cotizacion' }, userToken);
+        const response = await xanoService.createOrderWithDetails({ ...payload, estado: 'en_cotizacion', estado_pedido: 'en_revision' }, userToken);
         return res.status(201).json({ message: 'Pedido creado exitosamente', pedido: response });
       } catch (_) { /* fallback a admin */ }
     }
@@ -184,7 +184,7 @@ router.post('/xano', verificarToken, asyncHandler(async (req, res) => {
         xanoUserId = creado.id;
       } catch (_) {}
     }
-    const response = await xanoService.createOrderWithDetails({ ...payload, usuario_id: xanoUserId ?? undefined, user_id: xanoUserId ?? undefined, estado: 'en_cotizacion' }, adminToken);
+    const response = await xanoService.createOrderWithDetails({ ...payload, usuario_id: xanoUserId ?? undefined, user_id: xanoUserId ?? undefined, estado: 'en_cotizacion', estado_pedido: 'en_revision' }, adminToken);
     res.status(201).json({ message: 'Pedido creado exitosamente', pedido: response });
   } catch (e) {
     const info = { status: e.response?.status, url: e.config?.url, message: e.response?.data?.message || e.message };
@@ -253,6 +253,81 @@ router.post('/cotizaciones/xano', tokenOpcional, asyncHandler(async (req, res) =
       precio_unitario: value.precio_unitario ?? 0,
     };
     res.status(201).json({ message: 'Cotización creada localmente', cotizacion: nuevo });
+  }
+}));
+
+router.get('/cotizaciones/usuario/:uid', verificarToken, asyncHandler(async (req, res) => {
+  const { uid } = req.params;
+  const page = parseInt(req.query.page || 1);
+  const limit = parseInt(req.query.limit || 10);
+
+  const esPropio = String(req.usuario.id) === String(uid);
+  const esAdmin = req.usuario.rol === 'admin' || req.usuario.isAdmin === true;
+
+  if (!esPropio && !esAdmin) {
+    throw new ForbiddenError('No tienes permiso para ver las cotizaciones de otro usuario');
+  }
+
+  const tokenHeader = req.headers.authorization || '';
+  const token = tokenHeader.split(' ')[1] || null;
+
+  try {
+    let useToken = token;
+    if (esAdmin && !esPropio) {
+      useToken = await xanoService.ensureAdminToken();
+    }
+
+    const resultado = await xanoService.getCotizacionesByUser(uid, { page, limit }, useToken);
+    const items = resultado.data || resultado.items || [];
+
+    // Filtrar estrictamente por usuario para evitar fugas de datos si Xano no filtra correctamente
+    const itemsFiltrados = items.filter(item => {
+      const itemUid = item.usuario_id ?? item.user_id;
+      // Si es admin viendo sus propias cosas, o usuario normal, solo mostrar las suyas
+      // Si es admin viendo a otro (esPropio=false), el uid ya es el del target
+      return String(itemUid) === String(uid);
+    });
+
+    const cotizaciones = itemsFiltrados.map(c => ({
+      id: c.id,
+      created_at: c.created_at,
+      medidas: c.medidas || '',
+      cubierta: c.cubierta || '',
+      material_mueble: c.material_mueble || '',
+      color: c.color || '',
+      color_cubierta: c.color_cubierta || c.colorCubierta || '',
+      color_material: c.color_material || c.colorMaterial || '',
+      precio_unitario: c.precio_unitario || c.precio || 0,
+      comuna: c.comuna || c.traslado_comuna || '',
+      precio_comuna: c.precio_comuna || c.precioComuna || 0,
+      precio_traslado: c.precio_comuna || c.precio_traslado || c.precioComuna || c.precioTraslado || 0,
+      total_con_traslado: c.total_con_traslado || c.totalConTraslado || c.total || 0,
+      usuario_id: c.usuario_id ?? c.user_id ?? null,
+      estado_cotizacion: cotizacionesEstado.get(String(c.id)) || 'pendiente',
+    }));
+
+    res.json({
+      message: 'Cotizaciones obtenidas exitosamente',
+      cotizaciones,
+      pagination: {
+        page,
+        limit,
+        // Ajustar total y páginas basado en el filtrado local si es necesario, 
+        // aunque idealmente Xano debería devolver la paginación correcta.
+        // Si filtramos localmente, la paginación de Xano podría no coincidir.
+        // Por seguridad, reportamos el total de items filtrados en esta página.
+        total: itemsFiltrados.length, // Esto es temporal/aproximado si la paginación viene de Xano
+        pages: resultado.pagination?.pages || 1,
+      },
+    });
+  } catch (error) {
+    logger.error('Error al obtener cotizaciones de usuario', { uid, error: error.message });
+    // Si falla, retornamos lista vacía para no romper el frontend
+    res.json({
+      message: 'No se pudieron obtener las cotizaciones',
+      cotizaciones: [],
+      pagination: { page, limit, total: 0, pages: 1 },
+    });
   }
 }));
 
@@ -384,7 +459,7 @@ router.get('/cotizaciones/xano/:id', tokenOpcional, asyncHandler(async (req, res
   const cot = await xanoService.getCotizacionById(id, token);
   const detalle = [{ descripcion: 'Cotización', medidas: cot.medidas || '', material: cot.material_mueble || '', color: cot.color || '', cantidad: 1, precio_unitario: cot.precio_unitario ?? 0 }];
   const estadoCot = cotizacionesEstado.get(String(id)) || 'pendiente';
-  res.json({ message: 'Pedido obtenido exitosamente', pedido: { id: cot.id, estado: 'en_cotizacion', created_at: cot.created_at, detalles: detalle, total_estimado: cot.precio_unitario ?? 0, tipo: 'cotizacion', estado_cotizacion: estadoCot } });
+  res.json({ message: 'Pedido obtenido exitosamente', pedido: { ...cot, id: cot.id, estado: 'en_cotizacion', created_at: cot.created_at, detalles: detalle, total_estimado: cot.precio_unitario ?? 0, tipo: 'cotizacion', estado_cotizacion: estadoCot } });
 }));
 
 // Aceptar cotización (admin): crea pedido en Xano con estado 'aprobado' y envía PDF por correo
@@ -395,7 +470,13 @@ router.post('/cotizaciones/xano/:id/aceptar', verificarToken, verificarAdmin, up
     const cot = await xanoService.getCotizacionById(id, adminToken);
     const usuarioId = cot.usuario_id ?? cot.user_id ?? null;
     const detalle = [{ descripcion: 'Cotización aceptada', medidas: cot.medidas || '', material: cot.material_mueble || '', color: cot.color || '', cantidad: 1, precio_unitario: cot.precio_unitario ?? 0 }];
-    const creado = await xanoService.createOrderWithDetails({ usuario_id: usuarioId, user_id: usuarioId, detalles: detalle }, adminToken);
+    const creado = await xanoService.createOrderWithDetails({ 
+      usuario_id: usuarioId, 
+      user_id: usuarioId, 
+      detalles: detalle,
+      estado: 'aprobado',
+      estado_pedido: 'aprobado'
+    }, adminToken);
     try { await xanoService.updateOrderStatus(creado.id, { estado: 'aprobado' }, adminToken); } catch (_) {}
 
     cotizacionesEstado.set(String(id), 'aprobada');
@@ -470,6 +551,16 @@ router.patch('/cotizaciones/xano/:id/rechazar', verificarToken, verificarAdmin, 
   const contenido = `<p>Tu cotización #${id} ha sido <b>rechazada</b>. Si deseas ajustar detalles, contáctanos para una nueva cotización.</p>`;
   if (correoUsuario) { try { await emailService.enviarCorreo({ destinatario: correoUsuario, asunto, contenido, esHTML: true }); } catch (_) {} }
 
+  // Registrar acción en Xano
+  if (usuarioId) {
+    try {
+      await xanoService.createEstadoPedido({
+        estado_cotizacion: 'rechazada',
+        user_id: usuarioId
+      }, adminToken);
+    } catch (_) {}
+  }
+
   // Crear notificación en sistema para el usuario
   if (usuarioId) {
     try {
@@ -503,18 +594,54 @@ router.get('/cotizaciones/xano', verificarToken, verificarAdmin, asyncHandler(as
     const adminToken = await xanoService.ensureAdminToken();
     const resultado = await xanoService.getCotizaciones({ page, limit, ...params }, adminToken);
     const items = resultado.data || resultado.items || [];
-    const cotizaciones = items.map(c => ({
-      id: c.id,
-      created_at: c.created_at,
-      medidas: c.medidas || '',
-      cubierta: c.cubierta || '',
-      material_mueble: c.material_mueble || '',
-      color: c.color || '',
-      precio_unitario: c.precio_unitario ?? 0,
-      comuna: c.comuna || c.traslado_comuna || '',
-      usuario_id: c.usuario_id ?? c.user_id ?? null,
-      estado_cotizacion: cotizacionesEstado.get(String(c.id)) || 'pendiente',
-    }));
+
+    // Obtener detalles de usuarios
+    const extractId = (val) => {
+      if (!val) return null;
+      if (Array.isArray(val)) return val.length > 0 ? extractId(val[0]) : null;
+      if (typeof val === 'object') return val.id || null;
+      return val;
+    };
+
+    const userIds = [...new Set(items.map(c => extractId(c.usuario_id ?? c.user_id)).filter(id => id))];
+    const usersMap = new Map();
+
+    if (userIds.length > 0) {
+      await Promise.all(userIds.map(async (uid) => {
+        try {
+          const user = await xanoService.getUserById(uid, adminToken);
+          usersMap.set(String(uid), user);
+        } catch (e) {
+          // Ignorar error si no se encuentra usuario
+        }
+      }));
+    }
+
+    const cotizaciones = items.map(c => {
+      const uid = extractId(c.usuario_id ?? c.user_id);
+      const user = uid ? usersMap.get(String(uid)) : null;
+
+      return {
+        ...c, // Incluir todos los campos originales de Xano por si acaso
+        id: c.id,
+        created_at: c.created_at,
+        medidas: c.medidas || '',
+        cubierta: c.cubierta || '',
+        material_mueble: c.material_mueble || '',
+        color: c.color || '',
+        color_cubierta: c.color_cubierta || c.colorCubierta || '',
+        color_material: c.color_material || c.colorMaterial || '',
+        precio_unitario: c.precio || c.precio_unitario || c.total || c.cotizacion || 0,
+        precio_comuna: c.precio_comuna || c.precioComuna || 0,
+        precio_traslado: c.precio_comuna || c.precio_traslado || c.precioComuna || c.precioTraslado || 0,
+        total_con_traslado: c.total_con_traslado || c.totalConTraslado || c.total || 0,
+        comuna: c.comuna || c.traslado_comuna || c.trasladoComuna || '',
+        usuario_id: uid || null,
+        usuario_nombre: user ? (user.nombre || user.name) : '',
+        usuario_email: user ? (user.email || user.correo) : '',
+        estado_cotizacion: cotizacionesEstado.get(String(c.id)) || 'pendiente',
+      };
+    });
     res.json({
       message: 'Cotizaciones obtenidas exitosamente',
       cotizaciones,
@@ -536,7 +663,7 @@ router.get('/cotizaciones/xano', verificarToken, verificarAdmin, asyncHandler(as
         cubierta: c.cubierta || '',
         material_mueble: c.material_mueble || '',
         color: c.color || '',
-        precio_unitario: c.precio_unitario ?? 0,
+        precio_unitario: c.precio || c.precio_unitario || c.total || 0,
         usuario_id: c.usuario_id ?? c.user_id ?? null,
         estado_cotizacion: cotizacionesEstado.get(String(c.id)) || 'pendiente',
       }));

@@ -338,7 +338,7 @@ const handleAvatarChange = async event => {
     const formData = new FormData()
     formData.append('avatar', file)
 
-    const response = await api.post('/usuario/avatar', formData, {
+    const response = await api.post('/usuarios/avatar', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -357,7 +357,7 @@ const downloadData = async () => {
   isDownloadingData.value = true
 
   try {
-    const response = await api.get('/usuario/exportar-datos', {
+    const response = await api.get('/usuarios/exportar-datos', {
       responseType: 'blob',
     })
 
@@ -386,7 +386,7 @@ const deleteAccount = async () => {
   isDeletingAccount.value = true
 
   try {
-    await api.delete('/usuario/eliminar-cuenta')
+    await api.delete('/usuarios/eliminar-cuenta')
     toast.success('Cuenta eliminada exitosamente')
     authStore.logout()
     router.push('/')

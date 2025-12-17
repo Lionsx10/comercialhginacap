@@ -123,8 +123,8 @@ onMounted(() => {
       <div class="container mx-auto px-4 relative z-10">
         <div class="text-center">
           <h1 class="text-4xl md:text-6xl font-bold mb-6">
-            Recomendación Personalizada de Muebles
-            <span class="text-blue-300">con Inteligencia Artificial</span>
+            Muebles a medida
+            <span class="text-blue-300">Comercial HG</span>
           </h1>
           <p class="text-xl md:text-2xl mb-8 text-gray-200">
             Descubre muebles personalizados que se adaptan perfectamente a tu

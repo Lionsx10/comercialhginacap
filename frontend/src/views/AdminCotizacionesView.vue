@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import api from '@/services/api'
@@ -262,8 +262,24 @@ const generarPdfBlob = async q => {
   return blob
 }
 
-const verDetalles = q => {
-  router.push(`/admin/cotizaciones/${q.id}`)
+const verDetalles = async q => {
+  try {
+    const response = await api.get(`/pedidos/cotizaciones/xano/${q.id}`)
+    if (response.data && response.data.pedido) {
+      selected.value = { ...q, ...response.data.pedido }
+    } else {
+      selected.value = q
+    }
+  } catch (e) {
+    console.error('Error fetching full details', e)
+    selected.value = q
+  }
+  showDetails.value = true
+}
+
+const cerrarModal = () => {
+  selected.value = null
+  showDetails.value = false
 }
 
 const aceptarCotizacion = async q => {
@@ -275,8 +291,18 @@ const aceptarCotizacion = async q => {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     toast.success('Cotización aceptada')
-    quotes.value = quotes.value.filter(item => item.id !== q.id)
+    
+    // Actualizar estado localmente en lugar de eliminar
+    if (selected.value && selected.value.id === q.id) {
+      selected.value.estado_cotizacion = 'aprobada'
+    }
+    const idx = quotes.value.findIndex(item => item.id === q.id)
+    if (idx !== -1) {
+      quotes.value[idx].estado_cotizacion = 'aprobada'
+    }
+    
     showDetails.value = false
+    selected.value = null
   } catch (e) {
     toast.error('No se pudo aceptar la cotización')
   }
@@ -286,8 +312,17 @@ const rechazarCotizacion = async q => {
   try {
     await api.patch(`/pedidos/cotizaciones/xano/${q.id}/rechazar`)
     toast.success('Cotización rechazada')
-    q.rechazada = true
+    if (selected.value && selected.value.id === q.id) {
+      selected.value.rechazada = true
+      selected.value.estado_cotizacion = 'rechazada'
+    }
+    const idx = quotes.value.findIndex(item => item.id === q.id)
+    if (idx !== -1) {
+      quotes.value[idx].rechazada = true
+      quotes.value[idx].estado_cotizacion = 'rechazada'
+    }
     showDetails.value = false
+    selected.value = null
   } catch (_) {
     toast.error('No se pudo rechazar la cotización')
   }
@@ -341,54 +376,156 @@ class="overflow-x-auto">
               <thead>
                 <tr class="text-left text-sm text-gray-600">
                   <th class="py-2 pr-4">ID</th>
+                  <th class="py-2 pr-4">Usuario</th>
                   <th class="py-2 pr-4">Fecha</th>
-                  <th class="py-2 pr-4">Material</th>
-                  <th class="py-2 pr-4">Color</th>
-                  <th class="py-2 pr-4">Medidas</th>
-                  <th class="py-2 pr-4">Comuna</th>
                   <th class="py-2 pr-4">Precio</th>
                   <th class="py-2 pr-4">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="q in quotes"
-:key="q.id" class="border-t">
+                <tr v-for="q in quotes" :key="q.id" class="border-t">
                   <td class="py-2 pr-4">#{{ q.id }}</td>
                   <td class="py-2 pr-4">
-                    {{ formatDate(q.created_at) }}
+                    <div v-if="q.usuario_id">
+                      <div class="font-medium text-gray-900">{{ q.usuario_nombre || 'Usuario' }}</div>
+                      <div class="text-xs text-gray-500">{{ q.usuario_email }}</div>
+                      <div class="text-xs text-gray-400">ID: {{ q.usuario_id }}</div>
+                    </div>
+                    <span v-else>—</span>
                   </td>
+                  <td class="py-2 pr-4">{{ formatDate(q.created_at) }}</td>
+                  <td class="py-2 pr-4">${{ formatPrice(q.precio_unitario) }}</td>
                   <td class="py-2 pr-4">
-                    {{ q.material_mueble }}
-                  </td>
-                  <td class="py-2 pr-4">
-                    {{ q.color }}
-                  </td>
-                  <td class="py-2 pr-4">
-                    {{ q.medidas }}
-                  </td>
-                  <td class="py-2 pr-4">
-                    {{ q.comuna || q.traslado_comuna || '—' }}
-                  </td>
-                  <td class="py-2 pr-4">
-                    ${{ formatPrice(q.precio_unitario) }}
-                  </td>
-                  <td class="py-2 pr-4">
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 items-center">
                       <button
-                        class="px-3 py-1 border rounded"
+                        class="px-3 py-1 border rounded hover:bg-gray-50"
                         @click="verDetalles(q)"
                       >
                         Ver
                       </button>
                       <span
-                        v-if="q.rechazada"
+                        v-if="q.rechazada || q.estado_cotizacion === 'rechazada'"
                         class="px-2 py-1 text-xs rounded bg-red-100 text-red-700"
                       >Rechazado</span>
+                      <span
+                        v-if="q.estado_cotizacion === 'aprobada'"
+                        class="px-2 py-1 text-xs rounded bg-green-100 text-green-700"
+                      >Aprobado</span>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Detalles -->
+    <div
+      v-if="showDetails && selected"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+    >
+      <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h2 class="text-xl font-bold text-gray-900">
+                Cotización #{{ selected.id }}
+              </h2>
+              <p class="text-sm text-gray-500">
+                {{ formatDate(selected.created_at) }}
+              </p>
+            </div>
+            <button
+              @click="cerrarModal"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <span class="text-2xl">&times;</span>
+            </button>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Sección de datos estructurados -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-500">Usuario</label>
+                <div class="mt-1 text-gray-900" v-if="selected.usuario_id">
+                    <div>{{ selected.usuario_nombre || 'Usuario' }}</div>
+                    <div class="text-xs text-gray-500">{{ selected.usuario_email }}</div>
+                    <div class="text-xs text-gray-400">ID: {{ selected.usuario_id }}</div>
+                </div>
+                <div v-else class="mt-1 text-gray-900">—</div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-500">Comuna</label>
+                <div class="mt-1 text-gray-900">{{ selected.comuna || '—' }}</div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-500">Material</label>
+                <div class="mt-1 text-gray-900">{{ selected.material_mueble || '—' }}</div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-500">Precio Comuna</label>
+                <div class="mt-1 text-gray-900">${{ formatPrice(selected.precio_comuna) }}</div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-500">Color Material</label>
+                <div class="mt-1 text-gray-900">{{ selected.color_material || '—' }}</div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-500">Cubierta</label>
+                <div class="mt-1 text-gray-900">{{ selected.cubierta || '—' }}</div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-500">Color Cubierta</label>
+                <div class="mt-1 text-gray-900">{{ selected.color_cubierta || '—' }}</div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-500">Medidas</label>
+                <div class="mt-1 text-gray-900">{{ selected.medidas || '—' }}</div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t space-y-2">
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-600">Subtotal</span>
+                <span class="font-medium text-gray-900">${{ formatPrice(selected.precio_unitario) }}</span>
+              </div>
+              <div v-if="selected.precio_traslado" class="flex justify-between items-center text-sm">
+                <span class="text-gray-600">Traslado ({{ selected.comuna }})</span>
+                <span class="font-medium text-gray-900">${{ formatPrice(selected.precio_traslado) }}</span>
+              </div>
+              <div class="flex justify-between items-center pt-2 border-t">
+                <span class="text-lg font-bold text-gray-900">Total</span>
+                <span class="text-2xl font-bold text-indigo-600">
+                  ${{ formatPrice(selected.total_con_traslado || selected.precio_unitario) }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex justify-end gap-3">
+            <button
+              @click="descargarPdf(selected)"
+              class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+            >
+              Descargar PDF
+            </button>
+            <button
+              v-if="!selected.rechazada && selected.estado_cotizacion !== 'rechazada' && selected.estado_cotizacion !== 'aprobada'"
+              @click="rechazarCotizacion(selected)"
+              class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
+            >
+              Rechazar
+            </button>
+            <button
+              v-if="selected.estado_cotizacion !== 'aprobada' && !selected.rechazada && selected.estado_cotizacion !== 'rechazada'"
+              @click="aceptarCotizacion(selected)"
+              class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
+            >
+              Aceptar
+            </button>
           </div>
         </div>
       </div>

@@ -577,6 +577,8 @@ const mandarPedido = async () => {
       cubierta: form.cubiertaTipo,
       material_mueble: form.materialMueble,
       color: form.muebleColor || form.color || '',
+      color_cubierta: form.color || '',
+      color_material: form.muebleColor || '',
       medidas: medidasTxt,
       precio_unitario: total.value,
       comuna: trasladoComuna.value || '',
@@ -616,6 +618,39 @@ onMounted(() => {
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="lg:col-span-2 space-y-6">
+        <!-- Disclaimer -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded shadow-sm">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-bold text-yellow-800">
+                Importante – Proceso de Cotización
+              </h3>
+              <div class="mt-2 text-sm text-yellow-700 space-y-2">
+                <p>
+                  La información ingresada en este formulario corresponde únicamente a una cotización y no constituye una compra ni un compromiso de pago.
+                </p>
+                <p>
+                  Una vez enviada la cotización, esta será revisada por un administrador, quien evaluará la información proporcionada. Posteriormente, la cotización podrá ser aceptada o rechazada.
+                </p>
+                <p>
+                  En caso de ser aceptada, el cliente podrá descargar el archivo PDF de la cotización y deberá acercarse al local para continuar con el proceso de compra y coordinación correspondiente.
+                </p>
+                <p>
+                  En caso de ser rechazada, se solicita al cliente comunicarse con el establecimiento, ya sea vía llamada telefónica o de manera presencial en el local, para recibir mayor información o realizar ajustes a la cotización.
+                </p>
+                <p>
+                  Agradecemos su comprensión y preferencia.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="card">
           <div class="card-body">
             <h2 class="text-lg font-semibold mb-4">Tipo de cubierta</h2>
@@ -984,6 +1019,45 @@ onMounted(() => {
                   {{ t.key }}
                 </div>
               </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descripción de Acabados -->
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-lg font-semibold mb-4">Acabados de los Muebles</h2>
+            <p class="text-gray-700 mb-4 text-sm">
+              Nuestros muebles de cocina están disponibles en los siguientes acabados, los cuales se adaptan a distintos estilos, necesidades y presupuestos:
+            </p>
+            
+            <div class="space-y-4">
+              <div>
+                <h3 class="font-semibold text-gray-800 text-base">• Termolaminados</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                  Acabado moderno y uniforme, recubierto con una lámina termoformada que ofrece alta resistencia a la humedad y una superficie fácil de limpiar. Ideal para cocinas de uso frecuente y diseños contemporáneos.
+                </p>
+              </div>
+              
+              <div>
+                <h3 class="font-semibold text-gray-800 text-base">• Postformados</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                  Caracterizados por sus bordes curvos y continuos, lo que evita uniones visibles. Este acabado proporciona una mayor protección contra la humedad y un diseño funcional, siendo una opción práctica y duradera.
+                </p>
+              </div>
+              
+              <div>
+                <h3 class="font-semibold text-gray-800 text-base">• Melamina</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                  Material versátil y económico, disponible en una amplia variedad de colores y texturas. Ofrece buena resistencia al uso diario y es una excelente alternativa para proyectos que buscan equilibrio entre costo y estética.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
+              <p class="text-sm text-blue-800">
+                Si tiene alguna consulta o necesita orientación adicional, puede realizarla directamente a través de nuestro chatbot, el cual está disponible para asistirle durante el proceso de cotización.
+              </p>
             </div>
           </div>
         </div>

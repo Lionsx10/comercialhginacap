@@ -43,11 +43,12 @@ export default {
       if (window.__vf_loaded) return
       if (window.voiceflow?.chat?.load) {
         window.voiceflow.chat.load({
-          verify: { projectID: '692e5439a0ee2bf2ac627eb2' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'development',
-          assistant: { name: 'Bot de Recomendacion' },
-          voice: { url: 'https://runtime-api.voiceflow.com' },
+          verify: { projectID: '6941ed9c5d0d22e16b2a1753' },
+          url: 'https://general-runtime.voiceflow.com/',
+          versionID: 'production',
+          voice: {
+            url: 'https://runtime-api.voiceflow.com/',
+          },
         })
         window.__vf_loaded = true
         return
@@ -57,11 +58,12 @@ export default {
       const v = document.createElement('script')
       v.onload = () => {
         window.voiceflow.chat.load({
-          verify: { projectID: '692e5439a0ee2bf2ac627eb2' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'development',
-          assistant: { name: 'Bot de Recomendacion' },
-          voice: { url: 'https://runtime-api.voiceflow.com' },
+          verify: { projectID: '6941ed9c5d0d22e16b2a1753' },
+          url: 'https://general-runtime.voiceflow.com/',
+          versionID: 'production',
+          voice: {
+            url: 'https://runtime-api.voiceflow.com/',
+          },
         })
         window.__vf_loaded = true
       }

@@ -352,7 +352,7 @@ class="alert-error">
       </form>
 
       <!-- Enlaces adicionales -->
-      <div class="text-center">
+      <div v-if="!isAdminMode" class="text-center">
         <p class="text-sm text-gray-600">
           ¿No tienes una cuenta?
           <RouterLink

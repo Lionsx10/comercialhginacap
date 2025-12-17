@@ -48,12 +48,17 @@ const registroSchema = Joi.object({
     'any.only': 'Las contraseñas no coinciden',
     'any.required': 'La confirmación de contraseña es obligatoria'
   }),
+  n_telefono: Joi.string()
+    .pattern(/^9\d{8}$|^9\s\d{4}\s\d{4}$/)
+    .optional()
+    .messages({
+      'string.pattern.base': 'El teléfono debe ser 9 dígitos: formato 9 1234 5678'
+    }),
   telefono: Joi.string()
     .pattern(/^9\d{8}$|^9\s\d{4}\s\d{4}$/)
-    .required()
+    .optional()
     .messages({
-      'string.pattern.base': 'El teléfono debe ser 9 dígitos: formato 9 1234 5678',
-      'any.required': 'El teléfono es obligatorio'
+      'string.pattern.base': 'El teléfono debe ser 9 dígitos: formato 9 1234 5678'
     })
 });
 
@@ -137,7 +142,8 @@ router.post('/usuarios/registrar', asyncHandler(async (req, res) => {
     throw new ValidationError(error.details[0].message);
   }
 
-  const { nombre, email, password, password_confirmation, telefono } = value;
+  const { nombre, email, password, password_confirmation, telefono, n_telefono } = value;
+  const telefonoFinal = n_telefono || telefono;
 
   try {
     // Registrar usuario usando el servicio de Xano
@@ -145,7 +151,7 @@ router.post('/usuarios/registrar', asyncHandler(async (req, res) => {
       nombre,
       email,
       password,
-      telefono: (telefono || '').replace(/\s/g, '')
+      telefono: (telefonoFinal || '').replace(/\s/g, '')
     });
 
     // Extraer datos de la respuesta de Xano (ahora incluye información completa del usuario)
@@ -232,11 +238,21 @@ router.post('/login', asyncHandler(async (req, res) => {
       nombre_completo: user?.nombre_completo || user?.full_name || user?.name || user?.nombre || `${user?.first_name || ''} ${user?.last_name || ''}`.trim() || 'Usuario',
       email: user?.email || email, // Usar el email del request como fallback
       telefono: user?.telefono || user?.phone || '',
-      rol: user?.rol || user?.role || 'cliente',
+      rol: user?.rol || user?.role || 'member',
       is_admin: (user?.is_admin === true) || (user?.admin === true) || ((user?.rol || user?.role) === 'admin')
     };
 
     console.log('👤 UserData final enviado al frontend:', JSON.stringify(userData, null, 2));
+
+    // VALIDACIÓN DE ROL: Solo permitir acceso a usuarios con rol 'member'
+    const userRole = (userData.rol || '').toString().toLowerCase();
+    // Aceptamos 'member' y también 'cliente' por compatibilidad, pero rechazamos 'admin'
+    if (userRole !== 'member' && userRole !== 'cliente') {
+      logger.warn('Intento de login rechazado: Usuario no es member/cliente', { email, role: userRole });
+      return res.status(403).json({ 
+        message: 'Acceso restringido. Esta sección es exclusiva para clientes/miembros.' 
+      });
+    }
 
     // Registrar el evento de inicio de sesión exitoso
     logger.info('Usuario inició sesión', {
@@ -558,37 +574,46 @@ router.post('/admin/login', asyncHandler(async (req, res) => {
     throw new ValidationError('Correo y contraseña son obligatorios');
   }
 
+  // 1. Intentar login con Xano primero
   try {
-    const allowedEmail = process.env.ADMIN_EMAIL || 'admin123@gmail.com';
-    const allowedPassword = process.env.ADMIN_PASSWORD || 'Admin123@';
-    if (email !== allowedEmail || password !== allowedPassword) {
-      throw new UnauthorizedError('Credenciales inválidas para administrador');
-    }
-
-    const usuario = {
-      id: 1,
-      nombre: 'Administrador',
-      email: allowedEmail,
-      rol: 'administrador',
-      is_admin: true,
-    };
-
-    const token = generarToken({ id: usuario.id, correo: usuario.email, rol: usuario.rol });
-
-    logger.info('Administrador inició sesión', { userId: usuario.id, email: usuario.email, ip: req.ip });
-
-    res.json({
-      message: 'Inicio de sesión de administrador exitoso',
-      token,
-      refreshToken: token,
-      usuario,
+    const response = await xanoService.login({ email, password });
+    
+    // Verificar si es admin
+    const user = response.user || response;
+    const token = response.authToken || response.token || response.access_token;
+    
+    logger.info('Respuesta Login Xano', { 
+      hasToken: !!token, 
+      userId: user?.id, 
+      userRole: user?.rol || user?.role || user?.role_id,
+      keys: Object.keys(user || {})
     });
-  } catch (error) {
-    if (error.response?.status === 401 || error.response?.status === 403) {
-      throw new UnauthorizedError('Credenciales inválidas para administrador');
+
+    const isAdmin = (user.rol && user.rol.toLowerCase().includes('admin')) || 
+                    (user.role && user.role.toLowerCase().includes('admin')) ||
+                    user.is_admin === true || 
+                    user.isAdmin === true;
+
+    if (isAdmin) {
+       logger.info('Administrador inició sesión vía Xano', { userId: user.id, email: user.email, ip: req.ip });
+       
+       return res.json({
+        message: 'Inicio de sesión de administrador exitoso',
+        token: token,
+        refreshToken: token,
+        usuario: {
+          ...user,
+          is_admin: true // Asegurar flag para frontend
+        }
+      });
+    } else {
+      logger.warn('Usuario autenticado en Xano pero no es administrador', { email, role: user.role || user.rol });
+      return res.status(403).json({ message: 'No tienes permisos de administrador' });
     }
-    logger.error('Error en login ADMIN', { email, error: error.message });
-    throw new UnauthorizedError('Error durante el inicio de sesión de administrador');
+  } catch (e) {
+    // Si falla Xano (401 invalid credentials, o error de red)
+    logger.warn('Login admin Xano falló', { error: e.message });
+    throw new UnauthorizedError('Credenciales inválidas o no tienes permisos de administrador');
   }
 }));
 

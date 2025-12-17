@@ -18,9 +18,10 @@ async function setupHelmet(app) {
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
+        connectSrc: ["'self'", "https://x8ki-letl-twmt.n7.xano.io"],
         styleSrc: ["'self'", "'unsafe-inline'"],
         scriptSrc: ["'self'"],
-        imgSrc: ["'self'", "data:", "https:"],
+        imgSrc: ["'self'", "data:", "https:", "blob:"],
       },
     },
   }));
@@ -83,6 +84,7 @@ app.get('/health', (req, res) => {
 
 // SERVIR ARCHIVOS ESTÁTICOS - Frontend (debe ir después de las rutas de API)
 app.use(express.static(path.join(__dirname, 'frontend/dist')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // RUTAS API RAÍZ - Mover la información de la API a /api en lugar de raíz
 app.get('/api', (req, res) => {

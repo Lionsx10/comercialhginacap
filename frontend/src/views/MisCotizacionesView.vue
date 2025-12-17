@@ -110,8 +110,9 @@ const descargarPdf = async c => {
 
     const rows = [
       ['Cubierta', c.cubierta || ''],
+      ['Color Cubierta', c.color_cubierta || ''],
       ['Material', c.material_mueble || ''],
-      ['Color', c.color || ''],
+      ['Color Material', c.color_material || ''],
       ['Medidas', c.medidas || ''],
       ['Comuna', c.comuna || '—'],
       [
@@ -215,8 +216,9 @@ v-if="isLoading" class="py-10 text-center text-gray-600"
               <th class="px-4 py-3">ID</th>
               <th class="px-4 py-3">Fecha</th>
               <th class="px-4 py-3">Cubierta</th>
+              <th class="px-4 py-3">Color Cubierta</th>
               <th class="px-4 py-3">Material</th>
-              <th class="px-4 py-3">Color</th>
+              <th class="px-4 py-3">Color Material</th>
               <th class="px-4 py-3">Medidas</th>
               <th class="px-4 py-3">Comuna</th>
               <th class="px-4 py-3">Precio</th>
@@ -235,10 +237,13 @@ v-if="isLoading" class="py-10 text-center text-gray-600"
                 {{ c.cubierta || '—' }}
               </td>
               <td class="px-4 py-2">
+                {{ c.color_cubierta || '—' }}
+              </td>
+              <td class="px-4 py-2">
                 {{ c.material_mueble }}
               </td>
               <td class="px-4 py-2">
-                {{ c.color }}
+                {{ c.color_material || '—' }}
               </td>
               <td class="px-4 py-2">
                 {{ c.medidas }}
@@ -282,7 +287,7 @@ v-if="isLoading" class="py-10 text-center text-gray-600"
               </td>
             </tr>
             <tr v-if="items.length === 0">
-              <td class="px-4 py-6 text-center text-gray-500" colspan="8">
+              <td class="px-4 py-6 text-center text-gray-500" colspan="10">
                 No hay cotizaciones
               </td>
             </tr>

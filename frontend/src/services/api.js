@@ -251,13 +251,21 @@ export const authAPI = {
     authApi.post(import.meta.env.DEV ? '/login' : '/auth/login', credentials),
   // Iniciar sesión como administrador
   adminLogin: credentials =>
-    authApi.post(import.meta.env.DEV ? '/login' : '/auth/login', credentials),
-  // Registrar nuevo usuario
-  register: userData =>
     authApi.post(
-      import.meta.env.DEV ? '/usuarios/registrar' : '/auth/register',
-      userData,
+      import.meta.env.DEV ? '/admin/login' : '/auth/admin/login',
+      credentials,
     ),
+  // Registrar nuevo usuario
+  register: userData => {
+    const payload = { ...userData }
+    if (payload.telefono) {
+      payload.n_telefono = payload.telefono
+    }
+    return authApi.post(
+      import.meta.env.DEV ? '/usuarios/registrar' : '/auth/register',
+      payload,
+    )
+  },
   // Cerrar sesión
   logout: () => authApi.post(import.meta.env.DEV ? '/logout' : '/auth/logout'),
   // Renovar token de acceso
@@ -293,7 +301,7 @@ export const usersAPI = {
       payload.nombre = data?.nombre ?? data?.nombre_completo
     }
     if (data?.telefono !== undefined) {
-      payload.telefono = data.telefono
+      payload.n_telefono = data.telefono
     }
     if (data?.direccion !== undefined) {
       payload.direccion = data.direccion
