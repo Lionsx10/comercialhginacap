@@ -37,6 +37,32 @@ const upload = multer({
   }
 });
 
+// Configuración de Multer para Firmas
+const storageFirma = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const uploadDir = path.join(__dirname, '../uploads/firmas');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    cb(null, uploadDir);
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, `firma-${req.usuario.id}-${uniqueSuffix}${path.extname(file.originalname)}`);
+  }
+});
+
+const uploadFirma = multer({
+  storage: storageFirma,
+  limits: { fileSize: 2 * 1024 * 1024 }, // 2MB
+  fileFilter: function (req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new Error('Solo se permiten archivos de imagen (jpg, jpeg, png)'), false);
+    }
+    cb(null, true);
+  }
+});
+
 // GET /perfil
 router.get('/perfil', verificarToken, asyncHandler(async (req, res) => {
   const token = req.usuario.token;
@@ -97,6 +123,25 @@ router.post('/avatar', verificarToken, upload.single('avatar'), asyncHandler(asy
   res.json({
       message: 'Avatar actualizado exitosamente',
       avatar_url: avatarUrl
+  });
+}));
+
+// POST /firma
+router.post('/firma', verificarToken, uploadFirma.single('firma'), asyncHandler(async (req, res) => {
+  if (!req.file) throw new ValidationError('No se ha subido ningún archivo');
+  
+  const protocol = req.protocol;
+  const host = req.get('host');
+  const firmaUrl = `${protocol}://${host}/uploads/firmas/${req.file.filename}`;
+  
+  const token = req.usuario.token;
+  
+  // Actualizar en Xano
+  await xanoService.updateUser(req.usuario.id, { firma_url: firmaUrl, firma: { url: firmaUrl } }, token);
+  
+  res.json({
+      message: 'Firma actualizada exitosamente',
+      firma_url: firmaUrl
   });
 }));
 

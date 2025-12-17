@@ -41,6 +41,7 @@ const profileForm = reactive({
   direccion: '',
   fecha_nacimiento: '',
   avatar_url: '',
+  firma_url: '',
 })
 
 const passwordForm = reactive({
@@ -175,6 +176,7 @@ const loadUserData = async () => {
         direccion: user.direccion || '',
         fecha_nacimiento: user.fecha_nacimiento || '',
         avatar_url: user.avatar_url || '',
+        firma_url: user.firma_url || '',
       })
     }
 
@@ -352,6 +354,41 @@ const handleAvatarChange = async event => {
   }
 }
 
+// Manejar cambio de firma
+const handleFirmaChange = async event => {
+  const file = event.target.files[0]
+  if (!file) return
+
+  // Validar tamaño (2MB)
+  if (file.size > 2 * 1024 * 1024) {
+    toast.error('La imagen debe ser menor a 2MB')
+    return
+  }
+
+  // Validar tipo
+  if (!file.type.startsWith('image/')) {
+    toast.error('Solo se permiten archivos de imagen')
+    return
+  }
+
+  try {
+    const formData = new FormData()
+    formData.append('firma', file)
+
+    const response = await api.post('/usuarios/firma', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+
+    profileForm.firma_url = response.data.firma_url
+    toast.success('Firma actualizada exitosamente')
+  } catch (error) {
+    console.error('Error subiendo firma:', error)
+    toast.error('Error al subir la firma')
+  }
+}
+
 // Descargar datos
 const downloadData = async () => {
   isDownloadingData.value = true
@@ -518,6 +555,40 @@ for="avatar" class="btn-secondary cursor-pointer"
                   <p class="text-xs text-gray-500 mt-1">
                     JPG, PNG o GIF. Máximo 2MB.
                   </p>
+                </div>
+              </div>
+
+              <!-- Firma Digital -->
+              <div class="border-t pt-6">
+                <h3 class="text-sm font-medium text-gray-700 mb-4">Firma Digital</h3>
+                <div class="flex items-center space-x-6">
+                  <div class="flex-shrink-0 h-24 w-48 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden">
+                    <img
+                      v-if="profileForm.firma_url"
+                      :src="profileForm.firma_url"
+                      alt="Firma"
+                      class="h-full w-full object-contain"
+                    />
+                    <span v-else class="text-gray-400 text-sm">Sin firma</span>
+                  </div>
+                  <div>
+                    <label
+                      for="firma"
+                      class="btn-secondary cursor-pointer"
+                    >
+                      {{ profileForm.firma_url ? 'Cambiar firma' : 'Subir firma' }}
+                      <input
+                        id="firma"
+                        type="file"
+                        accept="image/*"
+                        class="sr-only"
+                        @change="handleFirmaChange"
+                      />
+                    </label>
+                    <p class="text-xs text-gray-500 mt-1">
+                      JPG o PNG. Recomendado fondo transparente.
+                    </p>
+                  </div>
                 </div>
               </div>
 
